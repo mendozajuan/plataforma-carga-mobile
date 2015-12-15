@@ -48,4 +48,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    //Defino las funciones de los botones del main_activity
+    public void login(View view){
+
+    }
+    public void singup(View view){
+
+    }
 }
