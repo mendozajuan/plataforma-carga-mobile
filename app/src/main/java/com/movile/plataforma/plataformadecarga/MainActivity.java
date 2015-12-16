@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.movile.plataforma.plataformadecarga.user.LoginActivity;
+import com.movile.plataforma.plataformadecarga.user.SingupActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "com.movile.plataforma.MESSAGE";
@@ -40,20 +43,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendMessage(View view){
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE,message);
-        startActivity(intent);
-
-    }
-
     //Defino las funciones de los botones del main_activity
     public void login(View view){
-
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
     public void singup(View view){
-
+        Intent intent = new Intent(this, SingupActivity.class);
+        startActivity(intent);
     }
 }

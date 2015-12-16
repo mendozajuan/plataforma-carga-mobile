@@ -6,5 +6,12 @@
     <string name="title_activity_display_message">My Message</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Ingresar</string>
+    <string name="title_activity_singup">Registrarse</string>
+
+    <string-array name="user_types">
+        <item>Empresa transportadora</item>
+        <item>Transportista autónomo</item>
+        <item>Remitente</item>
+    </string-array>
 </resources>

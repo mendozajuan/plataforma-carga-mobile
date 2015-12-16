@@ -17,16 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
-            android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.movile.plataforma.plataformadecarga.MainActivity" />
-        </activity>
-        <activity
             android:name=".user.LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".user.SingupActivity"
+            android:label="@string/title_activity_singup"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
