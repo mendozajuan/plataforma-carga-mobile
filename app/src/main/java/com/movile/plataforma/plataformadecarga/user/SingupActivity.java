@@ -2,10 +2,14 @@ package com.movile.plataforma.plataformadecarga.user;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.movile.plataforma.plataformadecarga.R;
+import com.movile.plataforma.plataformadecarga.user.validation.FormValidation;
 
 /**
  * Created by pollo on 15/12/15.
@@ -23,5 +27,23 @@ public class SingupActivity  extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+    }
+
+    public void sendSingupForm(View view) {
+        EditText userName = (EditText) findViewById(R.id.singupUserNameTxt);
+        EditText password = (EditText) findViewById(R.id.singupPassTxt);
+        EditText rePassword = (EditText) findViewById(R.id.singupRepassTxt);
+        if(FormValidation.isEmpty(userName)){
+            userName.setError("Requerido");
+        }
+        else if(FormValidation.isEmpty(password)){
+            password.setError("Requerido");
+        }
+        else if(FormValidation.notEquals(password, rePassword)){
+            rePassword.setError("Las contraseñas no coinciden");
+        }
+        else{
+            Toast.makeText(SingupActivity.this, "Se ha registrado un usuario", Toast.LENGTH_SHORT).show();
+        }
     }
 }
