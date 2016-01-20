@@ -46,7 +46,13 @@
             android:text="Ingresar"
             android:id="@+id/sendloginBtn"
             android:onClick="sendLoginForm"/>
-
+	
+	<Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingresar"
+            android:id="@+id/button"
+            android:onClick="toSearch"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
