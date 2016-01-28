@@ -4,7 +4,9 @@ import android.os.AsyncTask;
 
 import com.movile.plataforma.plataformadecarga.config.AppProperties;
 import com.movile.plataforma.plataformadecarga.user.LoginActivity;
+import com.movile.plataforma.plataformadecarga.user.SingupActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -33,10 +35,10 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
 
     private String endpoint;
     private String protocol;
-    private LoginActivity delegate;
+    private SingupActivity delegate;
     private HttpURLConnection connection;
 
-    public SingupAsyncTask(LoginActivity delegate){
+    public SingupAsyncTask(SingupActivity delegate){
         this.delegate = delegate;
         AppProperties appProps = AppProperties.getInstance(delegate);
         this.protocol = appProps.getProperties().getProperty(PROTOCOL_PROPERTY);
@@ -44,10 +46,17 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
 
     }
 
-    public void login(String username, String password, String type){
+    public void singup(String username, String password, String type){
+        JSONObject json = new JSONObject();
+        try {
+            json.put("username", username);
+            json.put("password", password);
+            json.put("type", type);
 
-
-        Object[] params = new Object[]{SINGUP_QUERY, null, GET};
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Object[] params = new Object[]{SINGUP_QUERY, json, GET};
         this.execute(params);
     }
 
@@ -84,10 +93,10 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return FAIL;
+        return OK;
     }
 
     public void onPostExecute(String result){
-        this.delegate.loginFnished(result);
+         this.delegate.singupFnished(result);
     }
 }
