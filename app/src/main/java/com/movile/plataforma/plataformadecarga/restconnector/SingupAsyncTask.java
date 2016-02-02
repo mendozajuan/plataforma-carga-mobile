@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,7 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
     private static final String SINGUP_QUERY = "/singup";
     private static final String PROTOCOL_PROPERTY = "api.protocol";
     private static final String ENDPOINT_PROPERTY = "api.endpoint";
+    private final String USER_AGENT = "Mozilla/5.0";
 
     private String endpoint;
     private String protocol;
@@ -51,7 +53,7 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
         try {
             json.put("username", username);
             json.put("password", password);
-            json.put("type", type);
+            json.put("type", "pepe");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -72,16 +74,39 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
             String urlStr = this.protocol +"://" + this.endpoint + query;
             System.out.println("Url: " +urlStr);
             url = new URL(urlStr);
-            this.connection = (HttpURLConnection) url.openConnection();
-            this.connection.setDoInput(true);
-            this.connection.setUseCaches(false);
-            this.connection.setRequestProperty(CONTENT_TYPE, JSON_APP_HEADER);
-            this.connection.setRequestMethod(POST);
-            this.connection.connect();
-            DataOutputStream printout = new DataOutputStream(connection.getOutputStream());
-            printout.writeUTF(URLEncoder.encode(json.toString(), "UTF-8"));
-            printout.flush();
-            printout.close();
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            //add reuqest header
+            con.setRequestMethod("POST");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+            String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+
+            // Send post request
+            con.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+            wr.writeBytes(URLEncoder.encode(json.toString(), "UTF-8"));
+            wr.flush();
+            wr.close();
+
+            int responseCode = con.getResponseCode();
+            System.out.println("Sending 'POST' request to URL : " + url);
+            System.out.println("Post parameters : " + urlParameters);
+            System.out.println("Response Code : " + responseCode);
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            //print result
+            System.out.println(response.toString());
 
         }
         catch (MalformedURLException e){
