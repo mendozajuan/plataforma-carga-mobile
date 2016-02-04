@@ -122,6 +122,6 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
     }
 
     public void onPostExecute(String result){
-         this.delegate.singupFnished(result);
+        this.delegate.singupFnished(result);
     }
 }

@@ -51,7 +51,7 @@ public class SingupActivity  extends AppCompatActivity {
         }
         else{
             this.singupAsyncTask.singup(userName.getText().toString(), password.getText().toString(), userType.toString());
-            Toast.makeText(SingupActivity.this, "Se ha registrado un usuario", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SingupActivity.this, "Se ha registrado un usuario", Toast.LENGTH_SHORT).show();
         }
     }
 
