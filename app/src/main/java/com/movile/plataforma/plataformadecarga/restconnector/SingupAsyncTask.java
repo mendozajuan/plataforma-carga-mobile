@@ -81,7 +81,6 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
             con.setRequestProperty("User-Agent", USER_AGENT);
             con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
 
             // Send post request
             con.setDoOutput(true);
@@ -92,7 +91,6 @@ public class SingupAsyncTask extends AsyncTask<Object, Object, String> {
 
             int responseCode = con.getResponseCode();
             System.out.println("Sending 'POST' request to URL : " + url);
-            System.out.println("Post parameters : " + urlParameters);
             System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
