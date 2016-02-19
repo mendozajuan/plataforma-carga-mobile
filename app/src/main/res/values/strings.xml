@@ -15,4 +15,5 @@
         <item>Transportista autónomo</item>
         <item>Remitente</item>
     </string-array>
+    <string name="title_activity_user_consumer_search">user_consumer_search</string>
 </resources>

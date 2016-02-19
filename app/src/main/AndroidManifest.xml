@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.movile.plataforma.plataformadecarga">
+    package="com.movile.plataforma.plataformadecarga" >
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +25,14 @@
             android:name=".user.SingupActivity"
             android:label="@string/title_activity_singup"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".user.consumer.search.UserConsumerSearch"
+            android:label="@string/title_activity_user_consumer_search" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBo9JxxiaLnV1nGiw3rVrCJLKA6b9XM8QQ"/>
     </application>
 
 </manifest>
